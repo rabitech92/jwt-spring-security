@@ -21,7 +21,7 @@ import com.bezkoder.spring.security.mongodb.security.services.UserDetailsService
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
   UserDetailsServiceImpl userDetailsService;
   private AuthEntryPointJwt unauthorizedHandler;
@@ -62,8 +62,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
-          auth.requestMatchers("/api/auth/login").permitAll()
-              .requestMatchers("/api/test/**").permitAll()
+          auth.requestMatchers("/login").permitAll()
+              .requestMatchers("/register").permitAll()
               .anyRequest().authenticated()
         );
     
